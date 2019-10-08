@@ -7,9 +7,7 @@ reality fixtures.
 
 ### Check-ins
 
-#### 1
-
-*[Video check-in #1](https://youtu.be/vpzpBfPq6DE)*
+#### Check-in 1
 
 Since the project was approved, most of my time on this project has been
 spent getting familiar with Unreal Engine 4, its testing systems, and
@@ -29,3 +27,5 @@ including the source of some of the projects I worked on while
 learning/prototyping, and for the next one I hope to have either a test
 suite which varies some parameters of the 3D environment, or an ARKit
 application with some simple user action that is potentially testable.
+
+**[Video check-in #1](https://youtu.be/vpzpBfPq6DE)**
