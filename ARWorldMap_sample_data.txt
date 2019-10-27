@@ -1,3 +1,4 @@
+(lldb) po worldMap
 <ARWorldMap: 0x281da4120 center=(1.298069 -0.935241 -2.285322) extent=(3.316771 1.979464 4.088997) | 10 anchors, 2582 features>
 
 (lldb) po worldMap.anchors
@@ -274,6 +275,7 @@ p worldMap.rawFeaturePoints.points
   ...
 }
 
+p worldMap.rawFeaturePoints.identifiers
 ([UInt64]) $R26 = 2582 values {
   [0] = 613
   [1] = 1755
