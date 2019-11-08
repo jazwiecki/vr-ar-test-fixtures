@@ -7,6 +7,39 @@ reality fixtures.
 
 ### Check-ins
 
+#### Check-in 3
+
+Finally, what feels like the most progress I've had in weeks! It turns
+out that Google's Android AR toolchain has more of what I need.
+Specifically, Android Studio's emulated devices can load VR worlds for
+AR applications. Once I got the basics set up – everything installed,
+ARCore SDK for emulators side-loaded to the virtual device, app running
+on the device – I was able to "navigate" in a VR environment and place
+a virtual 3D Android icon on a surface. Then, for the next step in my
+project, I had to start stubbing in the basis of an AR app that I could
+test. It's pretty barebones, but I break the screen up into a 3x3 grid
+and calculate a rough distance to any object directly in front with hit
+tests. Then, the results are passed to a function that updates a text
+box with a message about the distance to the nearest object. The good
+news is, it works. The bad news is, I haven't figured out how to run an
+automated test with it yet, probably because I can't figure out how to
+instantiate that VR world in the test, because it runs via the CLI.
+Still, I feel I'm definitely headed in the right direction.
+
+The only big question now is what the best experiment would be. There
+are two problems: first, I don't know if I can load a custom model for
+the VR world yet. Second, I don't know what would be the best
+comparison for an experiment. I suppose manually testing the application
+in the emulator might be an option, but that seems pretty likely a
+computer could perform them faster and more accurately than I can. I
+think my ideal test harness would allow me to generate the VR world from
+a real environment, so that I could at least eliminate variation between
+those environments. I'm going to reach out for suggestions after I
+figure out if I can even run a VR automated test.
+
+**[Video check-in #3](https://youtu.be/s12f76gebGM)**
+
+
 #### Check-in 2
 
 While I was working on the project for this checkpoint, I kept thinking
@@ -18,7 +51,8 @@ shouldn’t do this.” I definitely had the first reaction when I thought
 about augmented reality software testing, but the more I work on this,
 the more I think about the second reaction. There’s a reason there’s so
 little published research on automated software testing of augmented
-reality systems, and that’s because it’s actually really, really hard because most of the existing tools just aren’t there yet. Not even close.
+reality systems, and that’s because it’s actually really, really hard
+because most of the existing tools just aren’t there yet. Not even close.
 
 First, here are a couple options for my hypothesis: either automated
 functional testing using virtual reality will find more faults than
