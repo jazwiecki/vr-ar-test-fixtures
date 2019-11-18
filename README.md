@@ -7,6 +7,50 @@ reality fixtures.
 
 ### Check-ins
 
+#### Check-in 4
+
+So far, so good. Since the last check-in, I adapted a skeleton of an AR
+app for the visually impaired to give me an actual app to test. It
+looks for nearby objects and triggers proximity warnings. That was the
+easy part! After I got a trivial app to test, I had to figure out how to
+actually test it using the Android emulator's VR environment, a process
+which mostly involved exhaustively confirming several approaches were
+unworkable.
+
+First, I tried sending the keystrokes that the emulator used for
+navigating in the VR environment, before determining that, while they
+could be sent to the app, the emulator wasn't receiving them. Then, I
+tried using Google's UiAutomator test tooling, but that didn't
+receive the keystrokes, either. The emulator came with a couple built-in
+macros, but I couldn't reverse-engineer their format or find a way to
+trigger them programmatically. Finally, I realized that I could send
+commands to the emulator to record emulator movements and play them
+back. This gave me a way to record the prebuild macros and my own custom
+movements.
+
+Although this solved the problem of creating navigation fixtures for AR
+apps in VR environments, I still had to figure out how to trigger the
+automations from within the app test methods. This involved searching
+through the built-in test tooling, the command-line environment of the
+emulated device, and finally the source code of the "Android Bridge",
+"adb", which is installed as part of the SDK, in order to reverse-
+engineer how the commands I was running were being sent to the emulator.
+Poking around the emulator source was pretty useful, too – I managed to
+find the 3D models used by the emulator, although I haven't tried
+replacing them with custom models, which would be pretty useful to this
+line of research. Once I determined that I had to emulate telnet to talk
+to the emulator, and figured out how I could talk to the emulator from
+within the emulated environment, it was relatively easy to write a
+function that would run emulator automations by sending commands to a
+socket. As of this evening, I'm able to run a test that triggers an
+automation and then makes an assertion about the behavior of the app
+when that automation concludes.
+
+For my next check-in, I'll have a lot more source to go with this.
+Right now, it's pretty disorganized.
+
+**[Video check-in #4](https://youtu.be/9MWq6M4Ayh8)**
+
 #### Check-in 3
 
 Finally, what feels like the most progress I've had in weeks! It turns
