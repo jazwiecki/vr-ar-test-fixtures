@@ -26,7 +26,7 @@ class DeviceLogger:
         self.logcat_dir = logcat_dir
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='session')
 def device_logger(request):
     logcat_dir = request.config.logcat_dir
     screenshot_dir = request.config.screen_shot_dir

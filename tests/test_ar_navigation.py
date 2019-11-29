@@ -1,8 +1,10 @@
-import pytest
-import os
 import copy
+import os
+import pytest
+import time
 
 from appium import webdriver
+from appium.webdriver.extensions.android.nativekey import AndroidKey
 from helpers import take_screenshot_and_logcat, ANDROID_BASE_CAPS, EXECUTOR
 
 class TestMove():
@@ -23,16 +25,24 @@ class TestMove():
         )
 
         def finish():
-            take_screenshot_and_logcat(driver, device_logger, calling_request)
-            driver.quit()
+            take_screenshot_and_logcat(wd, device_logger, calling_request)
+            wd.quit()
 
-        request.addFinalizer(finish)
+        request.addfinalizer(finish)
 
         wd.implicitly_wait(10)
         return wd
 
-    def test_move_forward(self, driver):
+    def test_no_move(self, driver):
         app_output_box = driver.find_element_by_id('planetInfoCard')
         app_output_text = app_output_box.text
 
-        assert 'TK definite error' == app_output_text
+        assert "The space in front of you hasn't been processed yet." == app_output_text
+
+    def test_move(self, driver):
+        ux_fragment = driver.find_element_by_id('ux_fragment')
+        # actions = ActionChains(driver)
+        # driver.press_keycode(57)
+        while True:
+            driver.long_press_keycode(AndroidKey.W, metastate=50)
+

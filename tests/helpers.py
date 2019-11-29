@@ -10,6 +10,7 @@ ANDROID_BASE_CAPS = {
     'platformName': 'Android',
     'platformVersion': os.getenv('ANDROID_PLATFORM_VERSION') or '10.0',
     'deviceName': os.getenv('ANDROID_DEVICE_VERSION') or 'Android Emulator',
+    'autoGrantPermissions': True
 }
 
 EXECUTOR = 'http://127.0.0.1:4723/wd/hub'
