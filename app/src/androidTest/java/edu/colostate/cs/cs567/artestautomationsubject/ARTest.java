@@ -2,6 +2,8 @@ package edu.colostate.cs.cs567.artestautomationsubject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 
 //import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import androidx.test.uiautomator.By;
@@ -24,7 +26,7 @@ import static org.junit.Assert.*;
 public class ARTest {
     private static final String TAG = "ARTest_" + MainActivity.class.getSimpleName();
     private static final String AR_TEST_PACKAGE
-            = "edu.colostate.cs.cs567.artestautiomationsubject";
+            = "edu.colostate.cs.cs567.artestautomationsubject";
     private static final int LAUNCH_TIMEOUT = 5000;
     private UiDevice device;
 
@@ -66,5 +68,16 @@ public class ARTest {
             assertEquals("The space in front of you hasn't been processed yet.",
                     textView.getText());
         }
+    }
+
+    private String getLauncherPackageName() {
+        // Create launcher intent
+        final Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+
+        // Use PackageManager to get the launcher package name
+        PackageManager packageManager = getApplicationContext().getPackageManager();
+        ResolveInfo resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return resolveInfo.activityInfo.packageName;
     }
 }
