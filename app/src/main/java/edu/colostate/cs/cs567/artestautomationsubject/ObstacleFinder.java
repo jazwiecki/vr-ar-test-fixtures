@@ -50,7 +50,7 @@ public class ObstacleFinder {
         } else if (distance <= 0.1) {
             return "Stop!";
         } else {
-            return "Avoid the obstace in " + distance.toString() + " meters";
+            return "Avoid the obstacle in " + String.format("%.1f", distance) + " meters";
         }
     }
 
