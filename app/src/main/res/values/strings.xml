@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ARTestAutomationSubject</string>
+    <string name="default_center_response">The space in front of you hasn\'t been processed yet.</string>
 </resources>
