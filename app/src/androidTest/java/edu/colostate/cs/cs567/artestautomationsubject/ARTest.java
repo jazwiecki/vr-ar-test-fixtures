@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.util.Log;
 
 //import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import androidx.test.uiautomator.By;
@@ -17,6 +18,17 @@ import androidx.test.uiautomator.Until;
 import org.junit.Before;
 import org.junit.Test;
 //import org.junit.runner.RunWith;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
@@ -68,6 +80,60 @@ public class ARTest {
             assertEquals("The space in front of you hasn't been processed yet.",
                     textView.getText());
         }
+    }
+
+    @Test
+    public void moveForward() throws UiObjectNotFoundException, InterruptedException {
+        assertTrue(emulatorCommand("move_forward"));
+
+        Thread.sleep(10000);
+
+        UiObject textLabel = device.findObject(new UiSelector()
+                .className("android.widget.TextView"));
+        if (textLabel.exists()) {
+            assertEquals("Stop!", textLabel.getText());
+        } else {
+            fail();
+        }
+    }
+
+    private static boolean emulatorCommand(String command) {
+        int port = 5554;
+        InetAddress hostLoopback = null;
+
+        try {
+            hostLoopback = InetAddress.getByName("10.0.2.2");
+        } catch (Exception ex) {
+            Log.e(TAG, "TK error getting iNetAddress: " + ex);
+        }
+
+        try {
+            Socket socket = new Socket(hostLoopback, port);
+            OutputStream output = socket.getOutputStream();
+            PrintWriter writer = new PrintWriter(output, true);
+
+            writer.println("auth adzBj8sJ9DJyt1OS");
+            writer.println("automation play " + command);
+            writer.println("quit");
+
+            InputStream input = socket.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+
+            reader.lines().forEach(response -> {
+                Log.d(TAG, "emulator socket response: " + response);
+            });
+            writer.close();
+            reader.close();
+            socket.close();
+            return true;
+        } catch (UnknownHostException ex) {
+            Log.e(TAG, "Emulator host loopback not found: " + ex.getMessage());
+        } catch (SocketException ex) {
+            Log.e(TAG, "Emulator loopback socket exception: " + ex);
+        } catch (IOException ex) {
+            Log.e(TAG, "Emulator loopback IOException " + ex);
+        }
+        return false;
     }
 
     private String getLauncherPackageName() {
