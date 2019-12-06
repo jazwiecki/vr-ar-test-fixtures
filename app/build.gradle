@@ -83,5 +83,3 @@ pitest {
     outputFormats = ['HTML']
     verbose = true
 }
-
-//sceneform.asset('default')
