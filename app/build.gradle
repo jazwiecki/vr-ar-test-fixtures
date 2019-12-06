@@ -76,9 +76,7 @@ dependencies {
 apply plugin: 'com.google.ar.sceneform.plugin'
 
 pitest {
-//    testPlugin = 'junit'
     targetClasses = ['edu.colostate.cs.cs567.artestautomationsubject.*']
-//    targetTests = ['edu.colostate.cs.cs567.artestautomationsubject.*']
     threads = 5
     outputFormats = ['HTML']
     verbose = true
