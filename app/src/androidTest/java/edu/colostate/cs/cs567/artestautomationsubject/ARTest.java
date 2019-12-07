@@ -120,6 +120,7 @@ public class ARTest {
 
             reader.lines().forEach(response -> {
                 Log.d(TAG, "emulator socket response: " + response);
+//                TODO: log error and return false if response != "OK"
             });
             writer.close();
             reader.close();
