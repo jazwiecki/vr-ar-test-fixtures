@@ -33,14 +33,14 @@ apps in VR environments, I still had to figure out how to trigger the
 automations from within the app test methods. This involved searching
 through the built-in test tooling, the command-line environment of the
 emulated device, and finally the source code of the "Android Bridge",
-"adb", which is installed as part of the SDK, in order to reverse-
-engineer how the commands I was running were being sent to the emulator.
-Poking around the emulator source was pretty useful, too – I managed to
-find the 3D models used by the emulator, although I haven't tried
-replacing them with custom models, which would be pretty useful to this
-line of research. Once I determined that I had to emulate telnet to talk
-to the emulator, and figured out how I could talk to the emulator from
-within the emulated environment, it was relatively easy to write a
+"adb", which is installed as part of the SDK, in order to
+reverse-engineer how the commands I was running were being sent to the
+emulator. Poking around the emulator source was pretty useful, too – I
+managed to find the 3D models used by the emulator, although I haven't
+tried replacing them with custom models, which would be pretty useful to
+this line of research. Once I determined that I had to emulate telnet to
+talk to the emulator, and figured out how I could talk to the emulator
+from within the emulated environment, it was relatively easy to write a
 function that would run emulator automations by sending commands to a
 socket. As of this evening, I'm able to run a test that triggers an
 automation and then makes an assertion about the behavior of the app
