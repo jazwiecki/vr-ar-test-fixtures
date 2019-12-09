@@ -33,11 +33,11 @@ Hopefully my progress isn't measured just in lines of code, but also in
 the usefulness of what I've learned while throwing out dozens and dozens
 of lines of code that didn't work.
 
-Most recently, I burnt four or five trying to get PIT to run tests for
-Android applications, until I found a fork of a Gradle PIT plugin from a
-Polish engineer. Unfortunately, it doesn't run instrumented tests, so
-I'll still have to do my mutations by hand, but at least I can use the
-ones PIT generates, rather than making them up.
+Most recently, I burnt four or five hours trying to get PIT to run tests
+for Android applications, until I found a fork of a Gradle PIT plugin
+from a Polish engineer. Unfortunately, it doesn't run instrumented
+tests, so I'll still have to do my mutations by hand, but at least I can
+use the ones PIT generates, rather than making them up.
 
 For the next check-in, I expect to have the rest of my paper finished.
 Not to ruin any surprises, but my VR tests provide excellent code
