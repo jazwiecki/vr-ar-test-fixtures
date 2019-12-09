@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
         //disable hand manipulation animation
         arFragment.getPlaneDiscoveryController().hide();
-        arFragment.getPlaneDiscoveryController().hide();
 
         ObstacleFinder obstacleFinder = new ObstacleFinder(arFragment.getContext());
 
