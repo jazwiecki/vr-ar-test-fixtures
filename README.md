@@ -7,6 +7,51 @@ reality fixtures.
 
 ### Check-ins
 
+#### Check-in 5
+
+Henry Adams once wrote that "the result of a year's work depends more on
+what is struck out than on what is left in". When I found out during a
+lecture that the comment "finish strong" on the previous check-in meant
+that my project wasn't measuring up, I got very concerned. It's hard to
+show how many things I worked on didn't pan out, how much code I had to
+throw out, or how many hours I had to spend reading source code to
+figure out a way forward.
+
+Ultimately, I've done everything I said I would in my proposal, save for
+manually mutating my application to validate the use of these tests.
+I've got code coverage reports, which are not something Android Studio
+automatically generates for the instrumented tests which will use the
+emulator. Instead, to generate those reports, I had to wade through a
+lot of half-solutions, bad advice, and documentation to identify the
+single line of code I needed to add to my Gradle configuration to
+generate the reports, in addition to figuring out how to set up the
+appropriate Gradle wrapper. There are also the hours I've spent digging
+deeply into the Android Open Source Project to figure out how the tools
+I'm using work on the lowest levels, and the degree to which they can be
+manipulated or configured, in order to add this information to my paper.
+Hopefully my progress isn't measured just in lines of code, but also in
+the usefulness of what I've learned while throwing out dozens and dozens
+of lines of code that didn't work.
+
+Most recently, I burnt four or five trying to get PIT to run tests for
+Android applications, until I found a fork of a Gradle PIT plugin from a
+Polish engineer. Unfortunately, it doesn't run instrumented tests, so
+I'll still have to do my mutations by hand, but at least I can use the
+ones PIT generates, rather than making them up.
+
+For the next check-in, I expect to have the rest of my paper finished.
+Not to ruin any surprises, but my VR tests provide excellent code
+coverage, as you can see in this report. I have some guesses about the
+format of the binary files in which the emulator saves replayable
+macros, specifically that they're protobuf messages, so I might spend
+some time trying to track down their definition. I don't think I'll be
+able to demonstrate the replacement of the VR world, because I think
+that relies on some resources Google doesn't make public, but at least
+I think I can identify where they would have to be replaced if someone
+did want to customize them.
+
+**[Video check-in #5](https://studio.youtube.com/video/LpLCaZdoHjU/edit)**
+
 #### Check-in 4
 
 So far, so good. Since the last check-in, I adapted a skeleton of an AR
