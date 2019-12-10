@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
         //disable hand manipulation animation
         arFragment.getPlaneDiscoveryController().hide();
+        //disable hand start animation
+        arFragment.getPlaneDiscoveryController().setInstructionView(null);
 
         ObstacleFinder obstacleFinder = new ObstacleFinder(arFragment.getContext());
 
@@ -51,16 +53,22 @@ public class MainActivity extends AppCompatActivity {
         final ArSceneView arSceneView = arFragment.getArSceneView();
         arSceneView.getScene().addOnUpdateListener(
                 frameTime -> {
+                    Log.d(TAG, "updateListener called with frameTime " + frameTime.toString());
                     Frame frame = arSceneView.getArFrame();
                     if (frame == null) {
+                        Log.d(TAG, "updateListener frame null");
                         return;
                     }
                     if (frame.getCamera().getTrackingState() != TrackingState.TRACKING) {
+                        Log.d(TAG, "updateListener camera not tracking: " +
+                                frame.getCamera().getTrackingState().toString());
                         return;
                     }
 
                     for (Plane plane : frame.getUpdatedTrackables(Plane.class)) {
-                        if (plane.getTrackingState() == TrackingState.TRACKING) {
+                        Log.d(TAG, "updateListener updatedTrackables tracking state: " +
+                                plane.getTrackingState().toString());
+                        if (plane.getTrackingState() != TrackingState.STOPPED) {
                             obstacleFinder.processRayTracing(frame);
                         }
                     }
