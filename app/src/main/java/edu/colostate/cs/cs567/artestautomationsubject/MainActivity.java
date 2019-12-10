@@ -53,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
         final ArSceneView arSceneView = arFragment.getArSceneView();
         arSceneView.getScene().addOnUpdateListener(
                 frameTime -> {
-                    Log.d(TAG, "updateListener called with frameTime " + frameTime.toString());
+                    Log.d(TAG, "updateListener called with frameTime "
+                            + String.format("%f", frameTime.getStartSeconds()));
                     Frame frame = arSceneView.getArFrame();
+
                     if (frame == null) {
                         Log.d(TAG, "updateListener frame null");
                         return;

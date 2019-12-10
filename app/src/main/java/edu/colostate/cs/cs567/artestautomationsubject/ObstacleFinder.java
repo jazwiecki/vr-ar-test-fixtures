@@ -35,9 +35,10 @@ public class ObstacleFinder {
         if (!hitResults.isEmpty()) {
             centerDistance = hitResults.get(0).getDistance();
             Log.d(TAG, String.format("%d", hitResults.size()) + " hitResult(s), "
-                    + centerDistance.toString() + distanceMessage(centerDistance));
+                    + centerDistance.toString() + " " + distanceMessage(centerDistance));
         } else {
             // safe to assume nothing is being hit so...nothing is there?
+            Log.d(TAG, "No hit results");
             centerDistance = 6.0f;
         }
 
@@ -60,5 +61,9 @@ public class ObstacleFinder {
     private void updateText(int textDestination, String textContent) {
         TextView textView = (TextView) ((Activity) context).findViewById(textDestination);
         textView.setText(textContent);
+    }
+
+    protected void lostTracking() {
+        updateText(R.id.feedback, "Device isn't tracking, move phone around to re-enable.");
     }
 }
