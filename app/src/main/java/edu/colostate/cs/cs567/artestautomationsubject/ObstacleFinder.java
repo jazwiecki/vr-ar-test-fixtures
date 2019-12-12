@@ -62,8 +62,4 @@ public class ObstacleFinder {
         TextView textView = (TextView) ((Activity) context).findViewById(textDestination);
         textView.setText(textContent);
     }
-
-    protected void lostTracking() {
-        updateText(R.id.feedback, "Device isn't tracking, move phone around to re-enable.");
-    }
 }
