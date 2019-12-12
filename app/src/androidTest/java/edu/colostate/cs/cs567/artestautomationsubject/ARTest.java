@@ -83,37 +83,48 @@ public class ARTest {
 
     @Test
     public void moveForward() throws UiObjectNotFoundException, InterruptedException {
-        assertTrue(emulatorCommand("move_forward"));
-
-        Thread.sleep(10000);
-
-        UiObject textLabel = device.findObject(new UiSelector()
-                .className("android.widget.TextView"));
-        if (textLabel.exists()) {
-            assertEquals("Close", textLabel.getText());
-        } else {
-            fail();
-        }
+        assertTrue(validateMessageAfterMacro("Close", "move_forward", 5000));
     }
 
     @Test
     public void moveToStop() throws UiObjectNotFoundException, InterruptedException {
-        assertTrue(emulatorCommand("move_to_stop"));
+        assertTrue(validateMessageAfterMacro("Stop!", "move_to_stop", 5000));
+    }
 
-        Thread.sleep(10000);
+    @Test
+    public void moveToOtherRoom() throws UiObjectNotFoundException, InterruptedException {
+        assertTrue("Did not get expected text: `Avoid the obstacle in 3.6 meters`",
+                validateMessageAfterMacro("Avoid the obstacle in 3",
+                "move_to_other_room", 7000));
+    }
+
+    private boolean validateMessageAfterMacro(String message, String macro, int sleep)
+            throws UiObjectNotFoundException, InterruptedException {
+        Boolean emulatorCommandWorked = emulatorCommand(macro);
+
+        Thread.sleep(sleep);
 
         UiObject textLabel = device.findObject(new UiSelector()
                 .className("android.widget.TextView"));
         if (textLabel.exists()) {
-            assertEquals("Stop!", textLabel.getText());
+            // startsWith will allow us to pass in partial strings w/o making a more
+            // complicated test helper, in order to avoid code duplication
+            return emulatorCommandWorked && textLabel.getText().startsWith(message);
         } else {
-            fail();
+            Log.d(TAG, "Expected `" + message + "`, got `" + textLabel.getText() + "'.");
+            return false;
         }
+    }
+
+    private boolean validateMessageAfterMacro(String message, String macro)
+            throws UiObjectNotFoundException, InterruptedException {
+        return validateMessageAfterMacro(message, macro, 10000);
     }
 
     private static boolean emulatorCommand(String command) {
         int port = 5554;
         InetAddress hostLoopback = null;
+        boolean emulatorOk = true;
 
         try {
             hostLoopback = InetAddress.getByName("10.0.2.2");
@@ -136,15 +147,19 @@ public class ARTest {
             reader.lines().forEach(response -> {
                 if (response.startsWith("KO")) {
                     Log.e(TAG, "Emulator response not OK: " + response);
-                    return false;
                 } else {
                     Log.d(TAG, "emulator socket response: " + response);
                 }
             });
+
+            emulatorOk = reader.lines().noneMatch(
+                    (s) -> s.startsWith("KO")
+            );
+
             writer.close();
             reader.close();
             socket.close();
-            return true;
+            return emulatorOk;
         } catch (UnknownHostException ex) {
             Log.e(TAG, "Emulator host loopback not found: " + ex.getMessage());
         } catch (SocketException ex) {
