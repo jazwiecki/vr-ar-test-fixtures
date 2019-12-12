@@ -93,7 +93,7 @@ public class ARTest {
 
     @Test
     public void moveToOtherRoom() throws UiObjectNotFoundException, InterruptedException {
-        assertTrue("Did not get expected text: `Avoid the obstacle in 3.6 meters`",
+        assertTrue("Did not get expected text: `Avoid the obstacle in 3",
                 validateMessageAfterMacro("Avoid the obstacle in 3",
                 "move_to_other_room", 7000));
     }
