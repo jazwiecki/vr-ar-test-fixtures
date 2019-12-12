@@ -90,6 +90,21 @@ public class ARTest {
         UiObject textLabel = device.findObject(new UiSelector()
                 .className("android.widget.TextView"));
         if (textLabel.exists()) {
+            assertEquals("Close", textLabel.getText());
+        } else {
+            fail();
+        }
+    }
+
+    @Test
+    public void moveToStop() throws UiObjectNotFoundException, InterruptedException {
+        assertTrue(emulatorCommand("move_to_stop"));
+
+        Thread.sleep(10000);
+
+        UiObject textLabel = device.findObject(new UiSelector()
+                .className("android.widget.TextView"));
+        if (textLabel.exists()) {
             assertEquals("Stop!", textLabel.getText());
         } else {
             fail();
@@ -119,8 +134,12 @@ public class ARTest {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             reader.lines().forEach(response -> {
-                Log.d(TAG, "emulator socket response: " + response);
-//                TODO: log error and return false if response != "OK"
+                if (response.startsWith("KO")) {
+                    Log.e(TAG, "Emulator response not OK: " + response);
+                    return false;
+                } else {
+                    Log.d(TAG, "emulator socket response: " + response);
+                }
             });
             writer.close();
             reader.close();

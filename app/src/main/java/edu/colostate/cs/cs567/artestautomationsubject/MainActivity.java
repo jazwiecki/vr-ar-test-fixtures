@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (frame.getCamera().getTrackingState() != TrackingState.TRACKING) {
                         Log.d(TAG, "updateListener camera not tracking: " +
-                                frame.getCamera().getTrackingState().toString());
+                                frame.getCamera().getTrackingState().toString() + " " +
+                                frame.getCamera().getTrackingFailureReason());
                         return;
                     }
 
