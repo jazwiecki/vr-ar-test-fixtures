@@ -83,19 +83,28 @@ public class ARTest {
 
     @Test
     public void moveForward() throws UiObjectNotFoundException, InterruptedException {
-        assertTrue(validateMessageAfterMacro("Close", "move_forward", 5000));
+        assertTrue("Did not get expected text: `Close`",
+                validateMessageAfterMacro("Close", "move_forward", 5000));
     }
 
     @Test
     public void moveToStop() throws UiObjectNotFoundException, InterruptedException {
-        assertTrue(validateMessageAfterMacro("Stop!", "move_to_stop", 5000));
+        assertTrue("Did not get expected text: `Stop!`",
+                validateMessageAfterMacro("Stop!", "move_to_stop", 5000));
     }
 
     @Test
     public void moveToOtherRoom() throws UiObjectNotFoundException, InterruptedException {
         assertTrue("Did not get expected text: `Avoid the obstacle in 3",
                 validateMessageAfterMacro("Avoid the obstacle in 3",
-                "move_to_other_room", 7000));
+                "move_to_other_room", 12000));
+    }
+
+    @Test
+    public void moveBackwards() throws UiObjectNotFoundException, InterruptedException {
+        assertTrue("Did not get expected text: `Not close to anything",
+                validateMessageAfterMacro("Not close to anything",
+                        "move_backwards", 7000));
     }
 
     private boolean validateMessageAfterMacro(String message, String macro, int sleep)
@@ -129,7 +138,7 @@ public class ARTest {
         try {
             hostLoopback = InetAddress.getByName("10.0.2.2");
         } catch (Exception ex) {
-            Log.e(TAG, "TK error getting iNetAddress: " + ex);
+            Log.e(TAG, "Emulator error getting iNetAddress: " + ex);
         }
 
         try {
