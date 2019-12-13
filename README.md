@@ -50,7 +50,7 @@ that relies on some resources Google doesn't make public, but at least
 I think I can identify where they would have to be replaced if someone
 did want to customize them.
 
-**[Video check-in #5](https://studio.youtube.com/video/LpLCaZdoHjU/edit)**
+**[Video check-in #5](https://youtu.be/LpLCaZdoHjU)**
 
 #### Check-in 4
 
