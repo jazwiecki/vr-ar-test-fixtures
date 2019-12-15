@@ -84,13 +84,13 @@ public class ARTest {
     @Test
     public void moveForward() throws UiObjectNotFoundException, InterruptedException {
         assertTrue("Did not get expected text: `Close`",
-                validateMessageAfterMacro("Close", "move_forward", 5000));
+                validateMessageAfterMacro("Close", "move_forward", 9000));
     }
 
     @Test
     public void moveToStop() throws UiObjectNotFoundException, InterruptedException {
         assertTrue("Did not get expected text: `Stop!`",
-                validateMessageAfterMacro("Stop!", "move_to_stop", 5000));
+                validateMessageAfterMacro("Stop!", "move_to_stop", 9000));
     }
 
     @Test
@@ -111,7 +111,9 @@ public class ARTest {
             throws UiObjectNotFoundException, InterruptedException {
         Boolean emulatorCommandWorked = emulatorCommand(macro);
 
+        Log.d(TAG, "Sleeping during AR navigation for " + sleep + " seconds.");
         Thread.sleep(sleep);
+        Log.d(TAG, "Finished sleeping, check state of application.");
 
         UiObject textLabel = device.findObject(new UiSelector()
                 .className("android.widget.TextView"));
@@ -134,6 +136,7 @@ public class ARTest {
         int port = 5554;
         InetAddress hostLoopback = null;
         boolean emulatorOk = true;
+        final String automatorCommand = "automation play " + command;
 
         try {
             hostLoopback = InetAddress.getByName("10.0.2.2");
@@ -147,7 +150,8 @@ public class ARTest {
             PrintWriter writer = new PrintWriter(output, true);
 
             writer.println("auth adzBj8sJ9DJyt1OS");
-            writer.println("automation play " + command);
+            writer.println(automatorCommand);
+            Log.d(TAG, automatorCommand);
             writer.println("quit");
 
             InputStream input = socket.getInputStream();
