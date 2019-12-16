@@ -3,6 +3,8 @@
 Automated testing of augmented reality applications using virtual
 reality fixtures.
 
+![Full test suite gif](https://cs.colostate.edu/~jzw/images/full-test-suite.gif)
+
 ## Testing AR Applications
 As widely-deployed software platforms, as with any consumer, industry, or government software projects, effective testing will be critical to ensuring system correctness is effectively maintained through successive rounds of change. The advantages of automated software testing with regard to effectively maintaining software quality have been demonstrated, but it is difficult to write automated functional tests to verify the correctness of AR software.
 
@@ -11,8 +13,6 @@ In order for repeated tests to be valid over multiple runs, and to identify faul
 VR environments offer the ability to run tests of consistent worlds and precisely, consistently vary conditions over successive tests within the expected tolerances of the AR systems under test, potentially acting as effective test fixtures in a cost-effective fashion.
 
 This code demonstrates an effective approach for using the Android SDK to conduct tests of an Android AR application, providing 100% coverage and killing 94.1% of mutants.
-
-![Full test suite gif](https://cs.colostate.edu/~jzw/images/full-test-suite.gif)
 
 ## Requirements
 * [Android Studio](https://developer.android.com/studio/install)
