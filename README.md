@@ -13,15 +13,18 @@ TK VR can be used for fixtures
 Using the Android SDK
 
 ## Requirements
-Android Studio
-Gradle
+* [Android Studio](https://developer.android.com/studio/install)
+* [Gradle](https://gradle.org/install/)
 
 ## Setup
-Clone this repository and open the project in Android Studio
-Create an AR-enabled emulated Android device and install the app on it
-Copy test macros from `./emulator-macros` to your home folder
+1. Clone this repository and open the project in Android Studio
+2. Create an [AR-enabled emulated Android device](https://developers.google.com/ar/develop/java/emulator#create_a_virtual_device_with_ar_support) and install the app on it
+3. Copy test macros from `./emulator-macros` to your home folder (the emulator
+is hard-coded to look for files in this location)
 
 ## Running tests
+https://developer.android.com/studio/run/emulator-commandline
+
 Get the name of the emulated device by running `emulator -list-avds`.
 The emulator command is in `Android/sdk/emulator/`, so the actual
 location will depend on where the SDK is installed. On a computer
