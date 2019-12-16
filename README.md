@@ -12,6 +12,7 @@ VR environments offer the ability to run tests of consistent worlds and precisel
 
 This code demonstrates an effective approach for using the Android SDK to conduct tests of an Android AR application, providing 100% coverage and killing 94.1% of mutants.
 
+![Full test suite gif](https://cs.colostate.edu/~jzw/images/full-test-suite.gif)
 
 ## Requirements
 * [Android Studio](https://developer.android.com/studio/install)
