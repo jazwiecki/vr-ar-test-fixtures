@@ -1,4 +1,4 @@
-# CSU CS 567: Using VR Environments as fixtures for AR tests
+# Using VR Environments as fixtures for AR tests
 
 Automated testing of augmented reality applications using virtual
 reality fixtures.
