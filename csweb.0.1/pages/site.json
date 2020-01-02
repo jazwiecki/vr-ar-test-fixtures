@@ -1,0 +1,7 @@
+{
+  "name":"CS 567 Final Project: VR Fixtures for AR Applications",
+  "department":"pages/department.json",
+  "pages": [
+    {"type":"page", "title":"VR Fixtures for AR Applications", "menu":"Overview", "file":"pages/project.md"}
+  ]
+}

@@ -1,0 +1,4 @@
+[submodule "CS567-Term-Paper"]
+	path = CS567-Term-Paper
+	url = git@github.com:jazwiecki/CS567-Term-Paper.git
+	branch = master
